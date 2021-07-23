@@ -23,7 +23,7 @@ class DeliveryFactory extends Factory
      */
     public function definition()
     {
-        $shipment_date = new Carbon($this->faker->dateTimeBetween('-1 years'));
+        $shipment_date = Carbon::parse($this->faker->dateTimeBetween('-1 years'))->subWeekDays(14);
         $delivery_date = Carbon::parse($shipment_date)->addWeekDays($this->faker->numberBetween(3,14));
 
         return [

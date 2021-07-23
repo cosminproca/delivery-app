@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\DeliveryController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,10 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::apiResources([
-    'deliveries' => DeliveryController::class
-]);
+Route::post('estimate_delivery', 'App\Http\Controllers\DeliveryController@calculateEstimatedDeliveryDate');

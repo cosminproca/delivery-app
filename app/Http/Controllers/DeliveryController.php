@@ -2,63 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CalculateEstimatedDeliveryDateRequest;
 use App\Models\Delivery;
+use App\Services\DeliveryService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class DeliveryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    protected DeliveryService $deliveryService;
+
+    public function __construct(DeliveryService $deliveryService)
     {
-        //
+        $this->deliveryService = $deliveryService;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function calculateEstimatedDeliveryDate(CalculateEstimatedDeliveryDateRequest $request): JsonResponse
     {
-        //
-    }
+        $validated_data = $request->validated();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Delivery  $delivery
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Delivery $delivery)
-    {
-        //
-    }
+        $estimateDelivery = $this->deliveryService->estimateDeliveryDate($validated_data['zip_code'], $validated_data['date_range'] ?? null);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Delivery  $delivery
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Delivery $delivery)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Delivery  $delivery
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Delivery $delivery)
-    {
-        //
+        return response()->json($estimateDelivery);
     }
 }

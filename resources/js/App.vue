@@ -1,19 +1,19 @@
 <template>
   <PageHeader />
 
-  <ZipCodeInput v-model="zipCode" @keyup.enter="calculateDeliveryDate" />
-
-  <Errors :errors="errors" />
-
   <EstimatedDeliveryDateContainer
-    :day-word-form="dayWordForm"
+    :zip-code="zipCode"
     :estimated-delivery-date="estimatedDeliveryDate"
     :loading="loading"
   />
+
+  <ZipCodeInput v-model="zipCode" @keyup.enter="calculateDeliveryDate" />
+
+  <Errors :errors="errors" />
 </template>
 
 <script>
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import EstimatedDeliveryDateContainer from '@/components/EstimatedDeliveryDateContainer';
 import ZipCodeInput from '@/components/ZipCodeInput';
 import PageHeader from '@/components/PageHeader';
@@ -33,10 +33,6 @@ export default {
     const errors = ref(null);
     const estimatedDeliveryDate = ref(0);
     const loading = ref(false);
-
-    const dayWordForm = computed(() =>
-      estimatedDeliveryDate.value === 1 ? 'day' : 'days'
-    );
 
     const fetchDeliveryDate = async zipCode => {
       try {
@@ -71,7 +67,6 @@ export default {
       errors,
       loading,
       zipCode,
-      dayWordForm,
       estimatedDeliveryDate,
       calculateDeliveryDate
     };

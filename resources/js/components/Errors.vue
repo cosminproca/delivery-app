@@ -4,18 +4,18 @@
     class="bg-gray-50 rounded-md p-5 flex flex-col space-y-2 mt-10"
   >
     <span
-      v-for="(zipCodeError, index) in errors.errors.zip_code"
+      v-for="(zipCodeError, index) in errors.zip_code"
       :key="index"
       class="text-red-600 font-semibold"
     >
       - {{ zipCodeError }}
     </span>
     <span
-      v-for="(dateRangeError, index) in errors.errors.date_range"
+      v-for="(dateRangeError, index) in errors.date_range"
       :key="index"
       class="text-red-600"
     >
-      {{ dateRangeError }}
+      - {{ dateRangeError }}
     </span>
   </div>
 </template>
@@ -25,7 +25,6 @@ export default {
   name: 'Errors',
   props: {
     errors: {
-      type: Object,
       default: null
     }
   }

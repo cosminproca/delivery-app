@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Enums\DateRangeType;
 use App\Models\Delivery;
 use App\Traits\DetermineDateRangeType;
+use Carbon\Carbon;
 
 class DeliveryService
 {
@@ -21,6 +22,11 @@ class DeliveryService
             default => Delivery::withZipCode($zipCode)->orNearestZipCodes($zipCode)->orderBy('delivery_date')->get()
         };
 
-        return round(collect($historicalData)->avg('deliveryDateInDays'), 2);
+        if($historicalData->isEmpty()) {
+            return 'The delivery date cannot be estimated for the given zip code.';
+        }
+
+        // The estimated delivery date based on the average of the past delivery dates
+        return Carbon::now()->addDays(round(collect($historicalData)->avg('deliveryDateInDays')))->toDateString();
     }
 }

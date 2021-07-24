@@ -1,7 +1,7 @@
 <template>
   <span class="text-xl font-semibold">Estimated Delivery Date: </span>
-  <span v-if="estimatedDeliveryDate" class="text-light text-xl">
-    {{ estimatedDeliveryDate }} {{ dayWordForm }}
+  <span v-if="zipCode" class="text-light text-xl">
+    {{ estimatedDeliveryDate }}
   </span>
 </template>
 
@@ -13,9 +13,9 @@ export default {
       type: Number,
       default: 0
     },
-    dayWordForm: {
+    zipCode: {
       type: String,
-      default: 'days'
+      default: ''
     }
   }
 };

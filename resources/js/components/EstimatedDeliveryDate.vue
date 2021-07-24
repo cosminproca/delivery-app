@@ -1,8 +1,8 @@
 <template>
-  <span class="text-xl font-semibold">Estimated Delivery Date: </span>
-  <span v-if="zipCode" class="text-light text-xl">
+  <div class="text-xl font-semibold">Estimated Delivery Date:</div>
+  <div v-if="estimatedDeliveryDate" class="text-light text-xl">
     {{ estimatedDeliveryDate }}
-  </span>
+  </div>
 </template>
 
 <script>
@@ -10,8 +10,8 @@ export default {
   name: 'EstimatedDeliveryDate',
   props: {
     estimatedDeliveryDate: {
-      type: Number,
-      default: 0
+      type: String,
+      default: ''
     },
     zipCode: {
       type: String,

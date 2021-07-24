@@ -31,7 +31,7 @@ export default {
   setup() {
     const zipCode = ref('');
     const errors = ref(null);
-    const estimatedDeliveryDate = ref(0);
+    const estimatedDeliveryDate = ref('');
     const loading = ref(false);
 
     const fetchDeliveryDate = async zipCode => {
@@ -51,6 +51,7 @@ export default {
 
       loading.value = true;
       errors.value = null;
+      estimatedDeliveryDate.value = '';
 
       const res = await fetchDeliveryDate(zipCode.value);
 

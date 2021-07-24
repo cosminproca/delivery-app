@@ -567,11 +567,20 @@ video {
 	--tw-ring-shadow: 0 0 #0000;
 	--tw-shadow: 0 0 #0000;
 }
+.float-right {
+	float: right;
+}
 .mt-10 {
 	margin-top: 2.5rem;
 }
 .mb-10 {
 	margin-bottom: 2.5rem;
+}
+.mb-2 {
+	margin-bottom: 0.5rem;
+}
+.ml-2 {
+	margin-left: 0.5rem;
 }
 .flex {
 	display: flex;
@@ -661,6 +670,10 @@ video {
 .text-white {
 	--tw-text-opacity: 1;
 	color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+.text-black {
+	--tw-text-opacity: 1;
+	color: rgba(0, 0, 0, var(--tw-text-opacity));
 }
 .opacity-25 {
 	opacity: 0.25;

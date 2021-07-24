@@ -1,6 +1,6 @@
 <template>
   <div
-    class="p-5 mb-10 bg-blue-400 w-96 min-h-16 text-center text-white rounded-md"
+    class="p-5 mb-10 bg-blue-400 min-w-96 min-h-16 text-center text-white rounded-md"
   >
     <div v-if="!loading">
       <EstimatedDeliveryDate
@@ -22,8 +22,8 @@ export default {
   components: { EstimatedDeliveryDate, Spinner },
   props: {
     estimatedDeliveryDate: {
-      type: Number,
-      default: 0
+      type: String,
+      default: ''
     },
     zipCode: {
       type: String,

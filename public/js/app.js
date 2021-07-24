@@ -17999,7 +17999,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   setup: function setup() {
     var zipCode = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
     var errors = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
-    var estimatedDeliveryDate = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(0);
+    var estimatedDeliveryDate = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
 
     var fetchDeliveryDate = /*#__PURE__*/function () {
@@ -18056,10 +18056,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 loading.value = true;
                 errors.value = null;
-                _context2.next = 6;
+                estimatedDeliveryDate.value = '';
+                _context2.next = 7;
                 return fetchDeliveryDate(zipCode.value);
 
-              case 6:
+              case 7:
                 res = _context2.sent;
 
                 if (res.errors) {
@@ -18070,7 +18071,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 loading.value = false;
 
-              case 9:
+              case 10:
               case "end":
                 return _context2.stop();
             }
@@ -18110,6 +18111,7 @@ __webpack_require__.r(__webpack_exports__);
   name: 'Errors',
   props: {
     errors: {
+      type: [Object, null],
       "default": null
     }
   }
@@ -18132,8 +18134,8 @@ __webpack_require__.r(__webpack_exports__);
   name: 'EstimatedDeliveryDate',
   props: {
     estimatedDeliveryDate: {
-      type: Number,
-      "default": 0
+      type: String,
+      "default": ''
     },
     zipCode: {
       type: String,
@@ -18167,8 +18169,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     estimatedDeliveryDate: {
-      type: Number,
-      "default": 0
+      type: String,
+      "default": ''
     },
     zipCode: {
       type: String,
@@ -18349,9 +18351,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "text-xl font-semibold"
-}, "Estimated Delivery Date: ", -1
+}, "Estimated Delivery Date:", -1
 /* HOISTED */
 );
 
@@ -18360,7 +18362,7 @@ var _hoisted_2 = {
   "class": "text-light text-xl"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, $props.zipCode ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.estimatedDeliveryDate), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, $props.estimatedDeliveryDate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.estimatedDeliveryDate), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
   /* STABLE_FRAGMENT */
@@ -18383,7 +18385,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "p-5 mb-10 bg-blue-400 w-96 min-h-16 text-center text-white rounded-md"
+  "class": "p-5 mb-10 bg-blue-400 min-w-96 min-h-16 text-center text-white rounded-md"
 };
 var _hoisted_2 = {
   key: 0
@@ -18495,7 +18497,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "text",
     placeholder: "Enter zip code...",
     "class": "py-3 px-4 rounded-md border-transparent shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300",
-    onChange: _cache[1] || (_cache[1] = function ($event) {
+    onInput: _cache[1] || (_cache[1] = function ($event) {
       return _ctx.$emit('update:modelValue', $event.target.value);
     })
   }), null, 16
@@ -18538,7 +18540,6 @@ var _process$env$MIX_APP_;
 
 
 (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.baseURL) = (_process$env$MIX_APP_ = "http://localhost") === null || _process$env$MIX_APP_ === void 0 ? void 0 : _process$env$MIX_APP_.replace(/([^/])$/, '$1/');
-(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.withCredentials) = true;
 
 /***/ }),
 

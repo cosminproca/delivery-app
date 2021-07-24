@@ -5,7 +5,7 @@ namespace App\Traits;
 use App\Enums\DateRangeType;
 
 trait DetermineDateRangeType {
-    private function determineDateRangeType($value): ?int
+    public function determineDateRangeType($value): ?int
     {
         if($value === 'current_day_minus_ten') {
             return DateRangeType::MinusTenDays;

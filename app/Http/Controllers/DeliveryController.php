@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CalculateEstimatedDeliveryDateRequest;
-use App\Models\Delivery;
 use App\Services\DeliveryService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class DeliveryController extends Controller
 {

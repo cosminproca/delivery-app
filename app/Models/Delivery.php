@@ -44,6 +44,21 @@ class Delivery extends Model
         $query->whereBetween('delivery_date', [Carbon::now()->subDays(10), Carbon::now()]);
     }
 
+    public function scopeBetweenDates($query, $dates)
+    {
+        $query->whereBetween('created_at', [Carbon::parse($dates[0]), Carbon::parse($dates[1])]);
+    }
+
+    public function scopeLastMonth($query)
+    {
+        $query->where('created_at', '<', Carbon::parse($this->created_at)->subMonth());
+    }
+
+    public function scopeLastThreeMonths($query)
+    {
+        $query->where('created_at', '<', Carbon::parse($this->created_at)->subMonths(3));
+    }
+
     /*
         This should determine which zip codes are closest to the passed zip code
         I have hard coded some magical relations between the codes for simplicities sake
@@ -58,12 +73,14 @@ class Delivery extends Model
         ];
 
         /*
-            Basically point 0 is close to 4 and 1 on the map but 4 and 1 are not close to each other
-            The other points are not close to any other points either
+            Basically zip 0 is close to 4 and 1 on the map but 4 and 1 are not close to each other
+            The other zips are not close to any other points either
+            875234 is close to zip 2 but doesn't actually exist in our database
         */
         return match ($zipCode) {
             $zipCodes[0] => [$zipCodes[4], $zipCodes[1]],
             $zipCodes[1], $zipCodes[4] => [$zipCodes[0]],
+            '875234' => [$zipCodes[2]],
             default => []
         };
     }

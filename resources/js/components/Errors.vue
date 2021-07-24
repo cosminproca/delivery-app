@@ -25,6 +25,7 @@ export default {
   name: 'Errors',
   props: {
     errors: {
+      type: [Object, null],
       default: null
     }
   }

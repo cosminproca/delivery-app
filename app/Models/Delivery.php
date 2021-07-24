@@ -14,7 +14,7 @@ class Delivery extends Model
 
     public function getDeliveryDateInDaysAttribute(): int
     {
-        return Carbon::parse($this->shipment_date)->diffInDays(Carbon::parse($this->delivery_date));
+        return Carbon::parse($this->delivery_date)->diffInDays(Carbon::parse($this->shipment_date));
     }
 
     public function scopeWithZipCode($query, $zipCode)
@@ -46,17 +46,17 @@ class Delivery extends Model
 
     public function scopeBetweenDates($query, $dates)
     {
-        $query->whereBetween('created_at', [Carbon::parse($dates[0]), Carbon::parse($dates[1])]);
+        $query->whereBetween('delivery_date', [Carbon::parse($dates[0]), Carbon::parse($dates[1])]);
     }
 
     public function scopeLastMonth($query)
     {
-        $query->where('created_at', '<', Carbon::parse($this->created_at)->subMonth());
+        $query->where('delivery_date', '<', Carbon::parse($this->delivery_date)->subMonth());
     }
 
     public function scopeLastThreeMonths($query)
     {
-        $query->where('created_at', '<', Carbon::parse($this->created_at)->subMonths(3));
+        $query->where('delivery_date', '<', Carbon::parse($this->delivery_date)->subMonths(3));
     }
 
     /*

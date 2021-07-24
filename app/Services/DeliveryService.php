@@ -22,6 +22,7 @@ class DeliveryService
             default => Delivery::withZipCode($zipCode)->orNearestZipCodes($zipCode)->orderBy('delivery_date')->get()
         };
 
+        // If we have no related historical data we cannot estimate the delivery
         if($historicalData->isEmpty()) {
             return 'The delivery date cannot be estimated for the given zip code.';
         }
